@@ -11,7 +11,8 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 const char* ssid = "Rakesh";
 const char* password = "rakesh@12345";
-const char* serverUrl = "ws://192.168.0.139:8000"; // WebSocket URL
+const char* serverUrl = "ws://192.168.0.139:8000";
+
 const int buttonPin = 13;  
 const int ledPin = 12;     
 const int buzzerPin = 14;  
@@ -34,15 +35,16 @@ void setup() {
     initializeDisplay();
     connectToWiFi();
     
-    webSocket.begin("192.168.1.5", 8000, "/"); // Update with your laptop's IP
+    webSocket.begin("192.168.0.139", 8000, "/"); 
     webSocket.onEvent(webSocketEvent);
 }
 
 void loop() {
     handleButtonPress();
-    webSocket.loop(); // Keep WebSocket connection alive
+    webSocket.loop(); 
     if (pressCount == 2) {
-        pressCount = 0; 
+        pressCount = 0;
+        Serial.println(pressCount);
         triggerAlert();
         sendAlertToServer();
     }
@@ -84,7 +86,6 @@ void handleButtonPress() {
             if (buttonState == LOW) pressCount++;
         }
     }
-
     lastButtonState = reading;
 }
 
@@ -104,26 +105,24 @@ void triggerAlert() {
     display.clearDisplay();
     display.setCursor(0, 0);
     display.println("Alert Triggered");
-    display.setCursor(0, 10);  // Move to the second line
+    display.setCursor(0, 10);  
     display.println("Sending Msg to Server");
     display.display();
     delay(3000);
-    
     display.clearDisplay();
-    initializeDisplay();  // Reset to welcome message
+    initializeDisplay();  
 }
 
 void sendAlertToServer() {
-    webSocket.sendTXT("alert triggered"); // Send alert message
+    webSocket.sendTXT("alert triggered"); 
 }
 
 void webSocketEvent(WStype_t type, uint8_t* payload, size_t length) {
     if (type == WStype_TEXT) {
         String message = String((char*)payload);
         if (message == "Acknowledged. Stopping alert display.") {
-            // Stop displaying the alert on the OLED
             display.clearDisplay();
-            initializeDisplay();  // Reset to welcome message
+            initializeDisplay(); 
         }
     }
 }
