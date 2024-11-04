@@ -56,6 +56,7 @@ const App: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
+        
       {/* Profile Section */}
       <View style={styles.profileContainer}>
         <Image
