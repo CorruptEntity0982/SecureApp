@@ -1,11 +1,81 @@
-import random
+import React, { useEffect, useState, useRef } from 'react';
+import { View, Text, Alert, StyleSheet } from 'react-native';
+import WebSocket from 'react-native-websocket';
 
-def main():
-    while True:
-        user_input = input("Press Enter to get a random answer or type 'end' to quit: ")
-        if user_input.lower() == 'end':
-            break
-        print(random.choice(['Yes', 'No']))
+const App: React.FC = () => {
+  const [alertTriggered, setAlertTriggered] = useState(false);
+  const ws = useRef<WebSocket | null>(null);
 
-if __name__ == "__main__":
-    main()
+  const serverAddress = 'ws://172.20.10.2:3000';
+
+  useEffect(() => {
+    if (alertTriggered) {
+      Alert.alert('Alert', 'An alert has been triggered!', [
+        {
+          text: 'Close Alert',
+          onPress: () => {
+            setAlertTriggered(false);
+            ws.current?.send(JSON.stringify({ type: 'reset' }));
+          },
+          style: 'cancel',
+        },
+      ]);
+    }
+  }, [alertTriggered]);
+
+  const handleAlert = () => {
+    setAlertTriggered(true);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Alert System</Text>
+      <WebSocket
+        url={serverAddress}
+        onOpen={() => {
+          console.log('Connected to WebSocket');
+          ws.current?.send(JSON.stringify({ type: 'register', device: 'react' }));
+        }}
+        onMessage={(e: WebSocketMessageEvent) => {
+          const data = JSON.parse(e.data);
+          if (data.type === 'esp32-alert') {
+            handleAlert();
+          }
+        }}
+        onError={(e: WebSocketErrorEvent) => console.log('WebSocket error', e.message)}
+        onClose={() => console.log('Disconnected from WebSocket')}
+        ref={ws}
+      />
+      {alertTriggered ? (
+        <Text style={styles.alertText}>Alert Triggered! Check your notifications.</Text>
+      ) : (
+        <Text style={styles.alertText}>No Alerts</Text>
+      )}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    marginTop: 50,
+    flex: 1,
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  alertText: {
+    flex: 1,
+    fontSize: 18,
+    color: 'red',
+    marginTop: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+});
+
+export default App;
