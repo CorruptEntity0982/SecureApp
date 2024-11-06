@@ -14,11 +14,7 @@ const About = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity
-        style={[styles.card, hoveredCard === 1 && styles.cardHover]}
-        onPressIn={() => handleCardHover(1)}
-        onPressOut={handleCardLeave}
-      >
+      <TouchableOpacity style={[styles.card, hoveredCard === 1 && styles.cardHover]} onPressIn={() => handleCardHover(1)} onPressOut={handleCardLeave}>
         <View style={styles.cardBody}>
           <Text style={styles.title}>Secure Connect</Text>
           <Text style={styles.text}>
@@ -27,11 +23,7 @@ const About = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.card, hoveredCard === 2 && styles.cardHover]}
-        onPressIn={() => handleCardHover(2)}
-        onPressOut={handleCardLeave}
-      >
+      <TouchableOpacity style={[styles.card, hoveredCard === 2 && styles.cardHover]} onPressIn={() => handleCardHover(2)} onPressOut={handleCardLeave}>
         <View style={styles.cardBody}>
           <Text style={styles.subtitle}>Overview</Text>
           <Text style={styles.text}>
@@ -40,15 +32,14 @@ const About = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.card, hoveredCard === 3 && styles.cardHover]}
-        onPressIn={() => handleCardHover(3)}
-        onPressOut={handleCardLeave}
-      >
+      <TouchableOpacity style={[styles.card, hoveredCard === 3 && styles.cardHover]} onPressIn={() => handleCardHover(3)} onPressOut={handleCardLeave}>
         <View style={styles.cardBody}>
           <Text style={styles.subtitle}>Technologies Used</Text>
           <Text style={styles.text}>The platform integrates advanced technologies to deliver a seamless user experience:</Text>
           <View style={styles.list}>
+            <Text style={styles.listItem}>
+              <Text style={styles.bold}></Text>
+            </Text>
             <Text style={styles.listItem}>
               <Text style={styles.bold}>React Native</Text>: React Native is a JavaScript framework for building natively rendered mobile applications for iOS and Android using React..
             </Text>
@@ -73,6 +64,7 @@ const About = () => {
     </ScrollView>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
