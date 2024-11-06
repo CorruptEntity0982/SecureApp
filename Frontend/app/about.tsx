@@ -22,11 +22,7 @@ const About = () => {
         <View style={styles.cardBody}>
           <Text style={styles.title}>Secure Connect</Text>
           <Text style={styles.text}>
-            Welcome to PDF Uploader, your premier solution for converting PDF
-            documents into interactive quizzes. Our web application simplifies
-            the process of transforming PDFs into engaging quizzes, making it
-            effortless for educators, students, and professionals alike to
-            convert educational materials into interactive assessments.
+            Secure Connect is a safety-focused app designed to enhance personal security by connecting a wearable device with a real-time alerting system. This innovative app uses a Wi-Fi and Bluetooth-enabled ESP32 wearable device that sends an alert signal to a central web server via the WebSocket protocol. In case of an emergency, the server immediately notifies nearby users within a 100-meter radius through the Secure Connect app, built with React Native, ensuring rapid response in critical situations.
           </Text>
         </View>
       </TouchableOpacity>
@@ -39,11 +35,7 @@ const About = () => {
         <View style={styles.cardBody}>
           <Text style={styles.subtitle}>Overview</Text>
           <Text style={styles.text}>
-            Our platform's core functionality enables users to seamlessly upload
-            PDF files and automatically generate quizzes based on their content.
-            This feature is particularly advantageous in educational settings,
-            empowering educators to efficiently create assessments from their
-            existing teaching materials.
+            The Secure Connect project integrates hardware and software to create a comprehensive, responsive alert system. At its core, an ESP32 wearable device detects distress signals and relays these to a web server. Using the WebSocket protocol, this alert is then distributed to the Secure Connect app, where nearby users receive notifications alongside the geolocation of the user needing assistance.
           </Text>
         </View>
       </TouchableOpacity>
@@ -55,19 +47,19 @@ const About = () => {
       >
         <View style={styles.cardBody}>
           <Text style={styles.subtitle}>Technologies Used</Text>
-          <Text style={styles.text}>Our platform integrates advanced technologies to deliver a seamless user experience:</Text>
+          <Text style={styles.text}>The platform integrates advanced technologies to deliver a seamless user experience:</Text>
           <View style={styles.list}>
             <Text style={styles.listItem}>
-              <Text style={styles.bold}>React Native</Text>: A robust JavaScript library for building responsive and dynamic user interfaces.
+              <Text style={styles.bold}>React Native</Text>: React Native is a JavaScript framework for building natively rendered mobile applications for iOS and Android using React..
             </Text>
             <Text style={styles.listItem}>
               <Text style={styles.bold}>FastAPI</Text>: A high-performance web framework for Python 3.7+ that facilitates rapid API development.
             </Text>
             <Text style={styles.listItem}>
-              <Text style={styles.bold}>Websockets</Text>: Amazon Simple Storage Service provides scalable, secure, and high-performance object storage.
+              <Text style={styles.bold}>Websockets</Text>: WebSockets is a communication protocol that enables real-time, bidirectional data exchange between a client and server over a single, persistent connection.
             </Text>
             <Text style={styles.listItem}>
-              <Text style={styles.bold}>ESP 32</Text>: Amazon Elastic Compute Cloud offers resizable compute capacity in the cloud.
+              <Text style={styles.bold}>ESP 32</Text>: The ESP32 is a low-cost, low-power microcontroller with built-in Wi-Fi and Bluetooth, ideal for IoT applications and embedded systems.
             </Text>
             <Text style={styles.listItem}>
               <Text style={styles.bold}>Python</Text>: A versatile programming language extensively used in web development, scientific computing, and AI.
@@ -81,7 +73,6 @@ const About = () => {
     </ScrollView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
