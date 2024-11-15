@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const openYouTubeVideo = () => {
-    const youtubeUrl = "https://youtu.be/hbDJdxi52RQ?si=yoxHs8LnYMantEH2";
+    const youtubeUrl = "https://youtu.be/8d82Edmv8FQ";
     Linking.openURL(youtubeUrl);
   };
 

@@ -35,7 +35,7 @@ const Contact = () => {
             name="youtube"
             size={30}
             color="#3E65CF"
-            onPress={() => Linking.openURL('https://www.youtube.com/@programming_with_shashank')}
+            onPress={() => Linking.openURL('https://youtu.be/8d82Edmv8FQ')}
           />
         </View>
       </View>
